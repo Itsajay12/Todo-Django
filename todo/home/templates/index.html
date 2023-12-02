@@ -1,8 +1,63 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container rounded shadow-lg"  style="background-image: url(    https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1746&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
-);width: 50VW ; height: 90vh; object-fit:cover; background-repeat: no-repeat;" >
+<div class="container rounded shadow-lg" style="background-image: url(https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1746&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); width: 50VW; height: 90vh; object-fit: cover; background-repeat: no-repeat; overflow: auto;">
+
+   
+
+    <div class="container p-3">
+{% for query in query3 %}
+        <!-- Tasks -->
+     
+            <div class="task-box mb-2 bg-light rounded shadow-lg w-50 item">
+
+                <div class="d-block p-1">
+                    <div class="overflow-auto"> <span
+                        class="task-description">{{query.description}}   </span></div>
+                   
+                    <a href="{% url 'completed' query.id %}" class="task-list"><i class="bi bi-check2-all text-success"></i></a>
+                    <a href="{% url 'important' query.id %}" class="task-list px-5"><i class="bi bi-star text-warning"></i></a>
+                    <a href="{% url 'deleted' query.id %}" class="task-list px-5" ><i class="bi bi-trash3-fill text-danger"></i></a>
+
+                </div>
+
+                <div class="hstack gap-3">
+                    <div class="p-2"><small>created at <u class="text-success">{{query.adddate}}</u></small></div>
+
+                    <div class="vr"></div>
+                    <div class="p-2"><small>End on <u class="text-danger">{{query.enddate}}</u></small></div>
+                </div>
+            </div>
+        
+        <!-- End Tasks -->
+        {% endfor %}
+
+
+<div >
+   
 </div>
 
+      
+
+    </div>
+    <h6 class="p-3 sticky-bottom bg-light rounded mt-2"> 
+        <form action="" class="d-flex  justify-content-evenly align-items-center " method="post">
+            {% csrf_token %}
+        <input type="submit" value="+" class="btn btn-primary h-25">
+        <div class="row g-2">
+            <div class="col-md">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Enter the task" name="task-description" required>
+                <label for="floatingInputGrid">Enter Your Task</label>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="form-floating">
+               <input type="date" class="form-control" name="task-date" required>
+              
+              </div>
+            </div>
+          </div>
+    </form></h6>
+</div>
 
 {% endblock content %}

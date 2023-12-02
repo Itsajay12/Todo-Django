@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container rounded shadow-lg" style="background-image: url(https://plus.unsplash.com/premium_photo-1669048780129-051d670fa2d1?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); width: 50VW; height: 90vh; object-fit: contain; background-repeat: no-repeat; overflow: auto;">
+
+   
+
+    <div class="container p-3">
+ <!-- Tasks -->
+ {% for query in query  %}
+
+   
+ <div class="task-box mb-2 bg-light rounded shadow-lg w-50 item">
+
+    <div class="d-block p-1">
+        <div class="overflow-auto"> <span
+            class="task-description fs-4 text-success">
+            
+            {{query.description}}   
+       
+       
+            <a href="{% url 'deletetask' query.id %}" class="task-list px-5" ><i class="bi bi-trash3-fill text-danger"></i></a>
+        </span></div>
+    </div>
+
+    <div class="hstack gap-3">
+        <div class="p-2"><small>created at <u class="text-success">{{query.adddate}}</u></small></div>
+
+        <div class="vr"></div>
+        <div class="p-2"><small>End on <u class="text-danger">{{query.enddate}}</u></small></div>
+    </div>
+</div>
+
+
+{% endfor %}
+    </div>
+</div>
+<!-- End Tasks -->
+
+
+{% endblock content %}

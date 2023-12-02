@@ -1,0 +1,81 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Todo-List</title>
+  <link rel="stylesheet" href="{%static 'css/style.css'%}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+
+
+<div class="main-reg" style="background-image: url(https://images.unsplash.com/photo-1539635278303-d4002c07eae3?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) ;width: 100%;height: 100vh;object-fit: contain;">
+    <div class="container shadow-lg p-5">
+
+        <div class="row bg-light rounded border border-danger">
+            <div class="col-md-6 bg-light rounded mt-3 pt-3">
+                {% block content %}
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-floating">
+                        <input type="text" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="username" required>
+
+
+                        <label for="floatingTextarea">Usename</label>
+                      </div>
+                    <div class="form-floating mb-2 mt-2">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" required>
+                        <label for="floatingInput">Email address</label>
+                      </div>
+                      <div class="form-floating">
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" required>
+                        <label for="floatingPassword">Password</label>
+                      </div>
+
+
+                      <div class="form-floating">
+                        <input type="password" class="form-control" id="floatingPassword2" placeholder="Password" name="cpassword" required>
+                        <label for="floatingPassword"> Confirm Password</label>
+                      </div>
+
+                      <div class="input-group mb-3 mt-2">
+                        <input type="file" class="form-control" id="inputGroupFile02" name="userprofile" required>
+                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                      </div>
+                      <div class="d-grid gap-2 mt-2">
+                        <button class="btn btn-primary" type="submit">Button</button>
+                       
+                      </div>
+                  </form>
+                  <p><small>Already have an account ? <a href="{% url 'login' %}"><b>Login</b></a></small></p>
+                {% endblock content %}
+            </div>
+            <div class="col-md-6 mt-5">
+                <div class="container">
+                    <img src="https://images.unsplash.com/photo-1682685797406-97f364419b4a?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="img-thumbnail h-50" >
+
+                    {% for message in  messages %}
+                    
+                    <div class="alert alert-warning" role="alert">
+                       {{message}}
+                      </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+crossorigin="anonymous"></script>
+</body>
+
+</html>
