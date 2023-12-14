@@ -7,6 +7,7 @@
 
     <div class="container p-3">
  <!-- Tasks -->
+ {% if query %}
  {% for query in query  %}
 
    
@@ -33,6 +34,18 @@
 
 
 {% endfor %}
+{% else %}
+<div class="card text-center bg-dark text-light">
+    <div class="card-header">
+      No Tasks
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">No Completed Tasks Available</h5>
+      <a href="{% url "index" %}" class="btn btn-primary">Create Tasks</a>
+    </div>
+    
+  </div>
+ {% endif %}
     </div>
 </div>
 <!-- End Tasks -->

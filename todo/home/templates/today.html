@@ -7,6 +7,7 @@
 
     <div class="container p-3">
  <!-- Tasks -->
+ {% if query %}
  {% for desc in description  %}
 
    
@@ -31,6 +32,18 @@
 
 
 {% endfor %}
+{% else %}
+<div class="card text-center bg-dark text-light">
+    <div class="card-header">
+      No Tasks
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">No  Tasks For Today </h5>
+      <a href="{% url "index" %}" class="btn btn-primary">Create Tasks</a>
+    </div>
+    
+  </div>
+ {% endif %}
     </div>
 </div>
 <!-- End Tasks -->
