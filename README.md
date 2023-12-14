@@ -5,7 +5,11 @@ This is a todo list created using Django,Html,Css and Bootstrap.It has fetaures 
 
 
 #To Run
+<br>
 1)pip install django
+<br>
 2)pip install django-jazzmin
+<br>
 3)cd todo
+<br>
 4)python manage.py runserver
